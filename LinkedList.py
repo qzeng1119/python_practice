@@ -15,6 +15,7 @@ class Link:
         else:
             rest_repr = ''
         return 'Link({0}{1})'.format(repr(self.first), rest_repr)
+        # You also need to call 'repr' on self.first, namely using 'repr(self.first)' instead of 'self.first' in line 17
 
     def __str__(self):
         if not(self.rest):
