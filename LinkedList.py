@@ -7,10 +7,14 @@ class Link:
         self.first = first
         self.rest = rest
 
-    def __repr__(self):             # >>> print(Link.__repr__(other)) # OTHER is not a instance of Link 
-        if not(self.rest):          # >>> None
-            return 'Link({0})'.format(self.first)
-        return 'Link({0}, {1})'.format(self.first, self.rest.__repr__())
+    # >>> print(Link.__repr__(other)) # OTHER is not a instance of Link
+    # >>> None
+    def __repr__(self):              
+        if self.rest:
+            rest_repr = ', ' + repr(self.rest)
+        else:
+            rest_repr = ''
+        return 'Link({0}{1})'.format(repr(self.first), rest_repr)
 
     def __str__(self):
         if not(self.rest):
