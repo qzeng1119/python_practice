@@ -18,11 +18,20 @@ class Link:
         # You also need to call 'repr' on self.first, namely using 'repr(self.first)' instead of 'self.first' in line 17
 
     def __str__(self):
-        if not(self.rest):
-            return str(self.first)
-        return '{0} -> {1}'.format(self.first, self.rest)
-
-
+        # if not(self.rest):
+        #     return str(self.first)
+        # return '{0} -> {1}'.format(self.first, self.rest)
+        #
+        # The version above can't work well when <somelink>.first is also an instance of Link
+        # >>> print(Link(1, Link(Link(2))))
+        # 1 -> 2  # It is not what we want!
+        string = '<'
+        while self.rest is not Link.empty:
+            string += str(self.first) + ' '
+            self = self.rest # 'self' is like a name bound to the object, the change of the binding of 'self' wouldn't affect the object itself 
+        return string + str(self.first) + '>'
+        # >>> print(Link(1, Link(Link(2))))
+        # <1, <2>>
 def range_link(start, end):
     """Return a Link containing consecutive integers from START to END.
 
